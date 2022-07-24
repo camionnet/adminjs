@@ -67,7 +67,7 @@ export const RecordInList: React.FC<RecordInListProps> = (props) => {
 
   const actionParams = { resourceId: resource.id, recordId: record.id }
 
-  const handleActionClick = (event, sourceAction: ActionJSON): void => (
+  const handleActionClick = (event, sourceAction: ActionJSON): void | Promise<void> => (
     buildActionClickHandler({
       action: sourceAction,
       params: actionParams,
@@ -94,7 +94,7 @@ export const RecordInList: React.FC<RecordInListProps> = (props) => {
       <TableCell className={isSelected ? 'selected' : 'not-selected'}>
         {onSelect && record.bulkActions.length ? (
           <CheckBox
-            onChange={(): void => onSelect(record)}
+            onChange={() => onSelect(record)}
             checked={isSelected}
           />
         ) : null}
